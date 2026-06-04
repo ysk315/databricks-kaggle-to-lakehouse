@@ -7,10 +7,16 @@ In this project, two csv files are downloaded from kaggle(through API) into data
    3.Improt those files from Kaggle using API 
 3. Ingested data into bronze layer
      
-4. Cleaned and transformed data in silver layer
+4. Cleaned and transformed data in silver layer.
+   
     1.Clean column names that has special characters ike . and (. replace it with _
+   
     2. Replace -200 with Nulls
+       
     3. Derive new columns based on existing data
+     
     4.  Combine data and time to form a new value.
+      
     5. Change columns data with has , instead of . ( Examples 2,6 into 2.6)
-5. Aggregated data is loaded into gold layer
+   
+6. Aggregated data is loaded into gold layer
