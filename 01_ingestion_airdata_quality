@@ -1,0 +1,48 @@
+## step 1.  kaggle package is installed
+
+%python
+%pip install kaggle
+
+## Step 2.Loginto Kaggle account and create a new token  and authenticate token in databricks
+
+%python
+# ====================== KAGGLE AUTHENTICATION (FIXED) ======================
+import os
+
+# Paste your full token here (starts with KGAT_)
+os.environ['KAGGLE_API_TOKEN'] = 'ADD_YOUR_API_KEY'
+
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+api = KaggleApi()
+api.authenticate()
+
+print("✅ Kaggle API authenticated successfully!")
+
+
+## step 3 . Create a volume in databricks and downlaod files into volume form kaggle using API
+
+%python
+# Create volume and download datasets
+import os
+
+# Create Unity Catalog volume for data storage
+spark.sql("CREATE VOLUME IF NOT EXISTS workspace.default.environmental_data")
+
+data_path = "/Volumes/workspace/default/environmental_data"
+os.chdir(data_path)
+
+# Download datasets
+api.dataset_download_files('fedesoriano/air-quality-data-set', path='.', unzip=True)
+print("✅ Air Quality dataset downloaded")
+
+api.dataset_download_files('ziya07/water-quality-and-pollution-monitoring-dataset', path='.', unzip=True)
+print("✅ Water Quality dataset downloaded")
+
+
+###step 4  Check downlaoded files
+
+%python
+display(dbutils.fs.ls("/Volumes/workspace/default/environmental_data"))
+
+
