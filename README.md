@@ -9,7 +9,7 @@ In this project, two csv files are downloaded from kaggle(through API) into data
      
 4. Cleaned and transformed data in silver layer.
    
-    1.Clean column names that has special characters ike . and (. replace it with _
+     1.Clean column names that has special characters ike . and (. replace it with _
    
     2. Replace -200 with Nulls
        
