@@ -4,6 +4,7 @@
 ## 3. convert string datatype into decimals and relace "," to "."
 ## 4. convert data time
 ## 5. Derive necessary columns
+## 6. Check data in silver layer tables 
 
 %python
 # ====================== SILVER LAYER ======================
@@ -82,5 +83,16 @@ print("✅ Water Quality Silver processing done")
 air_silver.write.format("delta").mode("overwrite").saveAsTable("silver_air_quality")
 water_silver.write.format("delta").mode("overwrite").saveAsTable("silver_water_quality")
 
+
+# Check Silver tables
+print("Silver Air Quality:")
+spark.table("silver_air_quality").printSchema()
+
+print("\nSilver Water Quality:")
+spark.table("silver_water_quality").printSchema()
+
+# Quick row count
+print(f"\nSilver Air rows: {spark.table('silver_air_quality').count()}")
+print(f"Silver Water rows: {spark.table('silver_water_quality').count()}")
 print("\n✅ Silver Layer completed successfully!")
 print("Tables created: silver_air_quality, silver_water_quality")
