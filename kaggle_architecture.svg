@@ -1,0 +1,96 @@
+<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#5b6472"/>
+    </marker>
+    <linearGradient id="kaggleGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fd3e8"/>
+      <stop offset="100%" stop-color="#5aa9c4"/>
+    </linearGradient>
+    <linearGradient id="volGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9cfe0"/>
+      <stop offset="100%" stop-color="#9aa2bd"/>
+    </linearGradient>
+    <linearGradient id="bronzeGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8b478"/>
+      <stop offset="100%" stop-color="#cd8b4f"/>
+    </linearGradient>
+    <linearGradient id="silverGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d6dbe0"/>
+      <stop offset="100%" stop-color="#aeb7c0"/>
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5d67e"/>
+      <stop offset="100%" stop-color="#e0b83f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="500" fill="#ffffff"/>
+
+  <text x="600" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2933">Kaggle to Databricks Pipeline — Medallion Architecture</text>
+
+  <!-- Kaggle source -->
+  <g>
+    <rect x="30" y="185" width="150" height="100" rx="10" fill="url(#kaggleGrad)" stroke="#3d7f99" stroke-width="1.5"/>
+    <text x="105" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="#0d2b36">Kaggle</text>
+    <text x="105" y="240" text-anchor="middle" font-size="11.5" fill="#0d2b36">2 CSV datasets</text>
+    <text x="105" y="258" text-anchor="middle" font-size="11" fill="#173e4a">Downloaded via</text>
+    <text x="105" y="272" text-anchor="middle" font-size="11" fill="#173e4a">Kaggle API + Token</text>
+  </g>
+
+  <line x1="180" y1="235" x2="232" y2="235" stroke="#5b6472" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Databricks Volume -->
+  <g>
+    <rect x="235" y="185" width="150" height="100" rx="10" fill="url(#volGrad)" stroke="#6c7590" stroke-width="1.5"/>
+    <text x="310" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#20242f">Databricks</text>
+    <text x="310" y="240" text-anchor="middle" font-size="13" font-weight="700" fill="#20242f">Volume</text>
+    <text x="310" y="262" text-anchor="middle" font-size="11" fill="#3a3f4e">Raw CSV files</text>
+    <text x="310" y="276" text-anchor="middle" font-size="11" fill="#3a3f4e">landed in workspace</text>
+  </g>
+
+  <line x1="385" y1="235" x2="437" y2="235" stroke="#5b6472" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Bronze -->
+  <g>
+    <rect x="440" y="185" width="170" height="100" rx="10" fill="url(#bronzeGrad2)" stroke="#a3672f" stroke-width="1.5"/>
+    <text x="525" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#3a2410">BRONZE</text>
+    <text x="525" y="235" text-anchor="middle" font-size="12" fill="#3a2410">Raw ingested</text>
+    <text x="525" y="251" text-anchor="middle" font-size="12" fill="#3a2410">tables</text>
+    <text x="525" y="270" text-anchor="middle" font-size="10.5" fill="#4a3018">No transformations</text>
+  </g>
+
+  <line x1="610" y1="235" x2="662" y2="235" stroke="#5b6472" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Silver -->
+  <g>
+    <rect x="665" y="140" width="270" height="200" rx="10" fill="url(#silverGrad2)" stroke="#7c8894" stroke-width="1.5"/>
+    <text x="800" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#20262c">SILVER — Clean &amp; Transform</text>
+    <text x="690" y="192" font-size="11" fill="#252b31">• Normalize column names</text>
+    <text x="690" y="211" font-size="11" fill="#252b31">  (. and ( → _)</text>
+    <text x="690" y="232" font-size="11" fill="#252b31">• Replace sentinel −200 with Null</text>
+    <text x="690" y="253" font-size="11" fill="#252b31">• Derive new columns</text>
+    <text x="690" y="274" font-size="11" fill="#252b31">• Combine date + time fields</text>
+    <text x="690" y="295" font-size="11" fill="#252b31">• Fix decimal format (comma → dot,</text>
+    <text x="690" y="313" font-size="11" fill="#252b31">  e.g. 2,6 → 2.6)</text>
+  </g>
+
+  <line x1="935" y1="240" x2="987" y2="240" stroke="#5b6472" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Gold -->
+  <g>
+    <rect x="990" y="190" width="170" height="100" rx="10" fill="url(#goldGrad2)" stroke="#b8912a" stroke-width="1.5"/>
+    <text x="1075" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#3a2f08">GOLD</text>
+    <text x="1075" y="240" text-anchor="middle" font-size="12" fill="#3a2f08">Aggregated</text>
+    <text x="1075" y="256" text-anchor="middle" font-size="12" fill="#3a2f08">data</text>
+    <text x="1075" y="275" text-anchor="middle" font-size="10.5" fill="#4a3c10">Ready for analysis</text>
+  </g>
+
+  <!-- Spark pipeline label bracket -->
+  <path d="M440,165 L1160,165" stroke="#c1c8d0" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <path d="M440,165 L440,175 M1160,165 L1160,175" stroke="#c1c8d0" stroke-width="1.5"/>
+  <text x="800" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#5b6472">Databricks Lakehouse Pipeline</text>
+
+  <!-- Footer -->
+  <text x="30" y="440" font-size="11" fill="#7b8794">Flow: Kaggle API → Databricks Volume → Bronze (raw) → Silver (cleaned/transformed) → Gold (aggregated, analysis-ready)</text>
+</svg>
